@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-family: "Open Sans Variable", sans-serif;
+}
+
 @layer base {
   :root {
     --background: 204 100% 95%;
@@ -47,4 +51,5 @@
     --ring: 204 100% 48.2%;
     --radius: 0.75rem;
   }
+  /* open-sans-latin-wght-normal */
 }
