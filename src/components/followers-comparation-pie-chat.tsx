@@ -53,7 +53,7 @@ export function FollowersChart() {
   return (
     <Card className="w-full flex flex-col md:w-1/3 h-fit md:sticky top-4">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Resumen de seguidores</CardTitle>
+        <CardTitle>Resumen</CardTitle>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer

@@ -31,7 +31,7 @@ const TutorialInstaData = () => {
       className="relative min-h-dvh bg-foreground text-secondary py-16 space-y-12 overflow-hidden  "
     >
       <h1 className="text-4xl md:text-5xl font-semibold text-center">
-        Como obtener tus estadísticas desde Instagram
+        Como descargar la información de Instagram
       </h1>
 
       <div className="absolute size-96 right-0 bottom-0 translate-x-1/2 bg-white/10 rounded-full blur-2xl "></div>

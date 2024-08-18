@@ -33,10 +33,9 @@ const FollowersCompareSection = () => {
   return (
     following.length > 0 &&
     followers.length > 0 && (
-      <section ref={sectionRef} className="min-h-dvh space-y-8">
+      <section ref={sectionRef} className=" space-y-8">
         <h2 className="text-2xl font-semibold">
-          Lista de usuarios que no te siguen (
-          {followersThatAreNotFollowing.length})
+          Usuarios que no te siguen ({followersThatAreNotFollowing.length})
         </h2>
         <div className="flex  flex-col md:flex-row gap-6">
           <FollowersChart />
