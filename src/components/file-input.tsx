@@ -89,7 +89,7 @@ const FileInput = ({ fileName, placeholder }: Props) => {
   ) : (
     <div
       {...getRootProps({})}
-      className="size-full relative p-4 bg-white hover:bg-gray-100    text-primary flex justify-center items-center border-2 rounded-lg border-dashed transition-colors duration-300 hover:bg-primary/5  cursor-pointer ease-in-out "
+      className="size-full relative p-4 bg-white hover:bg-gray-100    text-primary flex justify-center items-center border-2 rounded-lg border-dashed transition-colors duration-300 cursor-pointer ease-in-out "
     >
       <input {...getInputProps()} />{" "}
       <div className="flex flex-col items-center gap-4">

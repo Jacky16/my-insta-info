@@ -26,10 +26,7 @@ const TutorialInstaData = () => {
   }, [apiSteps]);
 
   return (
-    <section
-      id="tutorial-insta-data"
-      className="relative min-h-dvh bg-foreground text-secondary py-16 space-y-12 overflow-hidden  "
-    >
+    <section className="w-full relative min-h-dvh bg-foreground text-secondary py-16 space-y-12 overflow-hidden  ">
       <h1 className="text-4xl md:text-5xl font-semibold text-center">
         Como descargar la información de Instagram
       </h1>
@@ -40,7 +37,7 @@ const TutorialInstaData = () => {
       <div className="absolute size-36 left-96 top-16 translate-x-1/2 bg-white/10 rounded-full blur-2xl "></div>
 
       <div className=" flex flex-col md:flex-row gap-6  items-center justify-center  max-w-6xl mx-auto overflow-hidden ">
-        <div className="flex-col gap-4 hidden md:flex">
+        <div className="flex-1 flex-col gap-4 hidden md:flex">
           {stepsDataInstagram.map((step, index) => (
             <Button
               key={step.title}
@@ -94,6 +91,7 @@ const TutorialInstaData = () => {
           opts={{
             align: "center",
           }}
+          className="flex-1"
         >
           <CarouselContent>
             {stepsDataInstagram.map((step) => (
