@@ -30,9 +30,9 @@ const TutorialInstaData = () => {
       id="tutorial-insta-data"
       className="relative min-h-dvh bg-foreground text-secondary py-16 space-y-12 overflow-hidden  "
     >
-      <h2 className="text-4xl md:text-5xl font-semibold text-center">
+      <h1 className="text-4xl md:text-5xl font-semibold text-center">
         Como obtener tus estadísticas desde Instagram
-      </h2>
+      </h1>
 
       <div className="absolute size-96 right-0 bottom-0 translate-x-1/2 bg-white/10 rounded-full blur-2xl "></div>
       <div className="absolute size-60 left-0 bottom-0 translate-x-1/2 bg-white/10 rounded-full blur-2xl "></div>
@@ -70,15 +70,21 @@ const TutorialInstaData = () => {
               <Button
                 key={index}
                 size="lg"
-                className="h-fit text-start p-4  justify-start md:hidden "
+                className="h-fit w-96 text-start p-4  justify-start md:hidden "
                 onClick={() => apiSteps?.scrollTo(index)}
                 variant={"secondary"}
               >
-                <span className="mx-2">{index + 1}</span>
-                <span className="font-bold">{step.title}</span>
-                {step.description && index + 1 === currentStep && (
-                  <p className="text-sm font-normal">{step.description}</p>
-                )}
+                <div className="flex justify-start gap-2 ">
+                  <span className="mx-2">{index + 1}</span>
+                  <div className="flex flex-col ">
+                    <p className="font-bold text-sm">{step.title}</p>
+                    {step.description && index + 1 === currentStep && (
+                      <p className="text-sm font-normal text-wrap">
+                        {step.description}
+                      </p>
+                    )}
+                  </div>
+                </div>
               </Button>
             ),
         )}
