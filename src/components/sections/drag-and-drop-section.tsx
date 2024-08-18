@@ -1,7 +1,7 @@
 import { $instagramUsers } from "@/stores/instagram-users-store";
 import { useStore } from "@nanostores/react";
 import FileInput from "../file-input";
-import { Button, buttonVariants } from "../ui/button";
+import { buttonVariants } from "../ui/button";
 
 const DragAndDropSection = () => {
   const { followers, following } = useStore($instagramUsers);
@@ -30,9 +30,16 @@ const DragAndDropSection = () => {
         Como obtener los archivos desde Instagram
       </a>
 
-      <FileInput />
-
-      {canViewStats && <Button size="lg">Ver comparaciones</Button>}
+      <div className="w-full flex flex-col md:flex-row gap-4">
+        <FileInput
+          fileName="followers_1.json"
+          placeholder="Sube el archivo followers_1.json"
+        />
+        <FileInput
+          fileName="following.json"
+          placeholder="Sube el archivo following.json"
+        />
+      </div>
     </div>
   );
 };

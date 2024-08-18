@@ -1,35 +1,28 @@
 import { getInstagramUsersFromFile } from "@/lib/extract-data-insta";
 import {
-  $instagramUsers,
   loadFollowersUsers,
   loadFollowingUsers,
   removeFollowersUsers,
   removeFollowingUsers,
 } from "@/stores/instagram-users-store";
-import { instagramFileNames } from "@/types/instagram-data.types";
-import { useStore } from "@nanostores/react";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone-esm";
-import { FaPlusCircle } from "react-icons/fa";
-import { FaFile, FaUpload } from "react-icons/fa6";
+import { FaFileArrowUp, FaFileCircleCheck } from "react-icons/fa6";
+
 import { Button } from "./ui/button";
+import { Card } from "./ui/card";
 
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+interface Props {
+  placeholder?: string;
+  fileName: string;
+}
 
-const FileInput = () => {
-  const { followers, following } = useStore($instagramUsers);
-
-  const canViewStats = followers.length > 0 && following.length > 0;
-
-  console.log(followers.length, following.length);
-
-  const [files, setFiles] = useState<File[]>([]);
+const FileInput = ({ fileName, placeholder }: Props) => {
+  const [file, setFile] = useState<File | null>(null);
 
   const { getRootProps, getInputProps, open } = useDropzone({
     onDrop: (acceptedFiles) => {
       if (acceptedFiles.length === 0) return;
-
-      setFiles([...files, ...acceptedFiles]);
 
       acceptedFiles.forEach(async (file) => {
         const users = await getInstagramUsersFromFile(file);
@@ -37,20 +30,25 @@ const FileInput = () => {
         switch (file.name) {
           case "following.json":
             loadFollowingUsers(users);
+            setFile(acceptedFiles[0]);
+
             break;
 
           case "followers_1.json":
             loadFollowersUsers(users);
+            setFile(acceptedFiles[0]);
+
             break;
         }
       });
     },
-    validator: (file) => {
-      const fileExists = files.some((f) => f.name === file.name);
-      if (fileExists) {
+    validator: (_file) => {
+      const differentFileName = _file.name !== fileName;
+
+      if (differentFileName) {
         return {
           code: "file_exists",
-          message: `El archivo ${file.name} ya existe.`,
+          message: ``,
         };
       }
       return null;
@@ -59,6 +57,8 @@ const FileInput = () => {
     accept: {
       "text/json": [".json"],
     },
+    noDrag: true,
+    multiple: false,
   });
 
   const handleRemoveFile = (file: File) => {
@@ -73,59 +73,29 @@ const FileInput = () => {
         break;
     }
 
-    setFiles(files.filter((f) => f.name !== file.name));
+    setFile(null);
   };
 
-  return files.length > 0 ? (
-    <Card className="w-full">
-      <CardHeader>
-        <CardTitle>Archivos subidos</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <ul className="flex flex-col flex-wrap gap-4 md:flex-row md:items-center">
-          {files.map((file, index) => (
-            <li key={file.name}>
-              <Button
-                onClick={() => handleRemoveFile(file)}
-                variant={"outline"}
-                className="h-fit flex hover:bg-destructive items-center flex-wrap gap-2 border rounded-sm p-4"
-              >
-                <FaFile className="size-6" />
-                <p key={index}>{file.name}</p>
-              </Button>
-            </li>
-          ))}
-          {!canViewStats && (
-            <Button
-              onClick={() => open()}
-              variant="secondary"
-              className="gap-2"
-            >
-              <span className="md:hidden">Subir más archivos</span>
-              <FaPlusCircle className="size-4" />
-            </Button>
-          )}
-        </ul>
-      </CardContent>
+  return file ? (
+    <Card className="size-full h-64 md:h-96 flex flex-col gap-2 justify-center items-center">
+      <FaFileCircleCheck className="size-16 text-green-500 animate-in" />
+      <p className="text-sm font-light">{file.name}</p>
+
+      <Button onClick={() => handleRemoveFile(file)} variant="ghost">
+        Eliminar archivo
+      </Button>
       <input {...getInputProps()} />
     </Card>
   ) : (
-    <div className="space-y-2 w-full">
-      <div
-        {...getRootProps({})}
-        className="relative w-full h-96  text-primary flex justify-center items-center border-2 rounded-lg border-dashed transition-colors duration-300 hover:bg-primary/5  cursor-pointer ease-in-out "
-      >
-        <input {...getInputProps()} />{" "}
-        <div className="flex flex-col items-center gap-4">
-          <FaUpload className="size-16 " />
-          <p className=" font-light">
-            Arrastra tus archivos o haz click para subirlos
-          </p>
-        </div>
+    <div
+      {...getRootProps({})}
+      className="size-full relative  h-64 md:h-96  text-primary flex justify-center items-center border-2 rounded-lg border-dashed transition-colors duration-300 hover:bg-primary/5  cursor-pointer ease-in-out "
+    >
+      <input {...getInputProps()} />{" "}
+      <div className="flex flex-col items-center gap-4">
+        <FaFileArrowUp className="size-12 " />
+        <p className=" font-light">{placeholder}</p>
       </div>
-      <small className="text-sm text-gray-400">
-        Los archivos necesarios son estos {instagramFileNames.join(", ")}
-      </small>
     </div>
   );
 };
