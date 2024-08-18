@@ -1,8 +1,13 @@
 ---
 import TutorialInstaData from "@/components/sections/tutorial-insta-data";
 import Layout from "@/layouts/Layout.astro";
+import { AstroSeo } from "@astrolib/seo";
 ---
 
-<Layout title="Tutorial">
+<Layout>
+  <AstroSeo
+    title="Cómo Descargar Tus Datos de Instagram: Guía Paso a Paso"
+    description="Aprende cómo descargar tus datos de Instagram paso a paso. Sigue nuestra guía sencilla para obtener tus estadísticas y comenzar a analizar tu cuenta"
+  />
   <TutorialInstaData client:load />
 </Layout>

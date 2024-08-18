@@ -2,10 +2,15 @@
 import Container from "@/components/container.astro";
 import DragAndDropSection from "@/components/sections/drag-and-drop-section";
 import FollowersCompareSection from "@/components/sections/followers-compare-section";
+import { AstroSeo } from "@astrolib/seo";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Comparador de seguidores">
+<Layout>
+  <AstroSeo
+    title="Comparador de seguidores"
+    description="Compara tus seguidores de Instagram y descubre quién ya no te sigue. Sube tu archivo de datos y visualiza fácilmente quién te ha dejado de seguir y quién sigue en tu lista"
+  />
   <Container>
     <DragAndDropSection client:idle />
   </Container>
