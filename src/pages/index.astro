@@ -2,6 +2,7 @@
 import Container from "@/components/container.astro";
 import DragAndDropSection from "@/components/sections/drag-and-drop-section";
 import FollowersCompareSection from "@/components/sections/followers-compare-section";
+import { FaCode } from "react-icons/fa6";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -25,17 +26,31 @@ import Layout from "../layouts/Layout.astro";
     <FollowersCompareSection client:idle />
   </Container>
 
-  <p class="text-center text-gray-400">
-    Develop with ❤️ by
-    <a
-      href="https://github.com/Jacky16"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="underline"
-    >
-      Adrià Martínez
-    </a>
-  </p>
+  <div class="text-center text-gray-400 space-y-2">
+    <p>
+      Develop with ❤️ by
+      <a
+        href="https://github.com/Jacky16"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline"
+      >
+        Adrià Martínez
+      </a>
+    </p>
+    <p class="text-sm">
+      Source code on
+      <a
+        href="https://github.com/Jacky16/my-insta-info"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline"
+      >
+        GitHub
+      </a>
+      <FaCode className="text-gray-300" />
+    </p>
+  </div>
 </Layout>
 
 <style>
