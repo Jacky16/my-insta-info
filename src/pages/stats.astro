@@ -1,11 +1,15 @@
 ---
 import Container from "@/components/container.astro";
 import DragAndDropSection from "@/components/sections/drag-and-drop-section";
+import FollowersCompareSection from "@/components/sections/followers-compare-section";
 import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout title="Comparador de seguidores">
   <Container>
-    <DragAndDropSection client:load />
+    <DragAndDropSection client:idle />
+  </Container>
+  <Container>
+    <FollowersCompareSection client:idle />
   </Container>
 </Layout>
