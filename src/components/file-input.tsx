@@ -77,7 +77,7 @@ const FileInput = ({ fileName, placeholder }: Props) => {
   };
 
   return file ? (
-    <Card className="size-full h-64 md:h-96 flex flex-col gap-2 justify-center items-center">
+    <Card className="size-full p-4 flex flex-col gap-2 justify-center items-center text-center">
       <FaFileCircleCheck className="size-16 text-green-500 animate-in" />
       <p className="text-sm font-light">{file.name}</p>
 
@@ -89,7 +89,7 @@ const FileInput = ({ fileName, placeholder }: Props) => {
   ) : (
     <div
       {...getRootProps({})}
-      className="size-full relative  h-64 md:h-96  text-primary flex justify-center items-center border-2 rounded-lg border-dashed transition-colors duration-300 hover:bg-primary/5  cursor-pointer ease-in-out "
+      className="size-full relative p-4   text-primary flex justify-center items-center border-2 rounded-lg border-dashed transition-colors duration-300 hover:bg-primary/5  cursor-pointer ease-in-out "
     >
       <input {...getInputProps()} />{" "}
       <div className="flex flex-col items-center gap-4">
